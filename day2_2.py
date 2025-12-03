@@ -6,8 +6,7 @@ invalid_ids = []
 
 def check_number_repeat_pattern(pattern_str, num):
   str_check = str(num).replace(pattern_str, 'x')
-  return len("x" * len(str_check)) == str_check.count("x") and len(str_check) == 2
-  return len("x" * len(str_check)) == str_check.count("x") # change the return to this for PART 2
+  return len("x" * len(str_check)) == str_check.count("x")
 
 def is_valid_id(num):
   num_len = len(str(num))

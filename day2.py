@@ -6,11 +6,7 @@ invalid_ids = []
 
 def check_number_repeat_pattern(pattern_str, num):
   str_check = str(num).replace(pattern_str, 'x')
-  return len("x" * len(str_check)) == str_check.count("x")
-
-# print(check_number_repeat_pattern("1000", 10001000))
-# exit()
-
+  return len("x" * len(str_check)) == str_check.count("x") and len(str_check) == 2
 
 def is_valid_id(num):
   num_len = len(str(num))
@@ -26,7 +22,8 @@ for r in ranges:
   id_start = int(r.split("-")[0])
   id_end = int(r.split("-")[1])
 
-  for i in range(id_start, id_end):
+  print(f'Checking range {id_start}-{id_end}')
+  for i in range(id_start, id_end + 1):
     if not is_valid_id(i):
       invalid_ids.append(i)
 

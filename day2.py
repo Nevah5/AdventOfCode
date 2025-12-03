@@ -4,18 +4,21 @@ ranges = ranges_raw.split(",")
 
 invalid_ids = []
 
-def check_number_next_to_same(num_to_check, num):
-  str_check = str(num).replace(num_to_check, 'x')
-  return str_check.count('xx') >= 1
+def check_number_repeat_pattern(pattern_str, num):
+  str_check = str(num).replace(pattern_str, 'x')
+  return len("x" * len(str_check)) == str_check.count("x")
+
+# print(check_number_repeat_pattern("1000", 10001000))
+# exit()
+
 
 def is_valid_id(num):
   num_len = len(str(num))
-  for num_digit_index in range(num_len):
-    for next_digit_offset in range(num_len - 1 - num_digit_index):
-      digit = str(num)[num_digit_index:num_digit_index+next_digit_offset]
+  for next_digit_offset in range(num_len - 1):
+    digit = str(num)[0:next_digit_offset+1]
 
-      if check_number_next_to_same(digit, num):
-        return False
+    if check_number_repeat_pattern(digit, num):
+      return False
   return True
 
 # loop through all ranges and check validity of id
@@ -37,4 +40,3 @@ for id in invalid_ids:
   ids_sum += id
 
 print(f"Solution is {ids_sum}")
-
